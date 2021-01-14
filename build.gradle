@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.alexbleasdale'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.marklogic', name: 'marklogic-client-api', version: '5.3.2'
+    // these are needed to override the _earlier_ lib in the springboot package (3.14.9) - without them you'll see a field exception
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.7.2'
+    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '4.7.2'
+    //compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.12.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.kafka:spring-kafka'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+test {
+    useJUnitPlatform()
+}
